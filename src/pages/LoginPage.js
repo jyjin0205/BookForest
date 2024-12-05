@@ -21,26 +21,32 @@ const LoginPage = () => {
 
             if(response.ok)
             {
-                const data = await response.json()
+                const data = await response.json();
             }
 
         } catch(error) {
-            console.error('Error submitting form:',error)
+            console.error('Error submitting form:',error);
         }
     }
 
     return(
         <>
-            <head>
-                Sign Up
-            </head>
-            <body>
-                <form onSubmit={handleSubmit}>
-                    ID : <input id='userid' type='text'/>
-                    Password : <input id='userpw' type='password'/>
-                    <button type ="submit">Login</button>
-                </form>     
-            </body>
+            Sign In
+            <form onSubmit={handleSubmit}>
+                ID : <input 
+                        id='userid' 
+                        type='text'
+                        value={signupData.userid}
+                        onChange={(e)=>setsignupData({ ...signupData, userid: e.target.value })}
+                        />
+                Password : <input 
+                                id='userpw' 
+                                type='password'
+                                value={signupData.userpw}
+                                onChange={(e)=>setsignupData({ ...signupData, userpw: e.target.value })}
+                                />
+                <button type ="submit">Login</button>
+            </form>     
         </>
     )
 

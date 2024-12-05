@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema, model, Types} = mongoose;
 
-const userSchema = new mongoose.Schema({
+/*const userSchema = new mongoose.Schema({
     _id: {type:String, required:true},
     hashedPassword: {type: String, required:true},
     hashedLostKey: {type: String},
@@ -11,3 +11,4 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
+*/
