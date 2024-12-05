@@ -22,7 +22,6 @@ const LoginPage = () => {
             if(response.ok)
             {
                 const data = await response.json()
-                
             }
 
         } catch(error) {
@@ -39,6 +38,7 @@ const LoginPage = () => {
                 <form onSubmit={handleSubmit}>
                     ID : <input id='userid' type='text'/>
                     Password : <input id='userpw' type='password'/>
+                    <button type ="submit">Login</button>
                 </form>     
             </body>
         </>

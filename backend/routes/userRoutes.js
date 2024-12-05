@@ -4,8 +4,31 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-router.get('/', (req, res) => {
-    res.json('Hello from the Backend!');
+router.get('/', async (req, res) => {
+    try {
+
+        //const newUser = new User({_id:1,hashedPassword:"testPW",hashedLostKey:"testKEY",nickname:"testNick",email:"testmail" });
+        // MongoDB에 저장 (컬렉션 자동 생성)
+        //const savedUser = await newUser.save();
+        //console.log('User saved:', savedUser);
+    } catch (error) {
+        console.error('Error saving user:', error);
+    }
+});
+
+router.get('/idcheck',(req,res)=>{
+    try{
+        const {userid} = req.query;
+        const checkUser = User.findOne({_id: (userid)});    
+        
+        if(checkUser)
+            return res.status(200).json({exists: true});
+        else
+            return res.status(200).json({exists: false});
+
+    } catch(error){
+        return res.status(401).json({message:'Error when checking Id existance'});
+    }
 });
 
 router.get('/myinfo',(req,res)=>{
@@ -17,9 +40,9 @@ router.get('/myinfo',(req,res)=>{
 
     try{
         const decoded = jwt.verify(token, 10);
-        res.status(200).json({user: decoded})
+        res.status(200).json({user: decoded});
     } catch(error) {
-        return res.status(401).json({message: 'Invalid token'})
+        return res.status(401).json({message: 'Invalid token'});
     }
 });
 
