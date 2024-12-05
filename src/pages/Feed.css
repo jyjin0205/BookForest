@@ -1,0 +1,83 @@
+h1 {
+    padding : 10px;
+    margin : 10px;
+    left : 20px;
+    position : relative;
+}
+
+#back{
+    margin : 10px;
+    padding : 10px;
+    left : 80px;
+    position : relative;
+}
+
+
+/* ItemCard */
+#cardBox {
+    display: flex;
+    flex-wrap: wrap; /* 여러 줄로 정렬 가능 */
+    gap: 16px; /* 카드 사이 간격 */
+    justify-content: flex-start; /* 좌측 정렬 */
+    width: 100%; /* 부모의 전체 너비 사용 */
+    padding: 20px; /* 여백 추가 */
+    box-sizing: border-box; /* padding 포함 */
+}
+
+.item-card {
+    flex: 0 0 calc(16.66% - 16px); /* 한 줄에 6개 배치, 간격을 고려하여 너비 설정 */
+    max-width: calc(16.66% - 16px); /* 최대 너비 설정 */
+    box-sizing: border-box; /* 패딩과 마진을 포함하여 계산 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 16px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-10px);
+}
+
+
+.item-card:hover {
+    transform: translateY(-10px);
+}
+
+.item-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.item-card__content {
+    padding: 16px;
+}
+
+.item-card__name {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.item-card__author {
+    color: #007BFF;
+    font-size: 1.2em;
+    margin: 8px 0;
+}
+
+
+  #center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    transform: translate(-50%, -50%); 
+}
+
+.subtitle{
+    position: relative;
+    left: 110px;
+    top : 50px;
+    font-size: 50px;
+}

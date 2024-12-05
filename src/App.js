@@ -1,14 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import Header from './components/Header';
+import Feed from './pages/Feed';
+import Today from './pages/Today';
 
 function App() {
+
     return (
         <Router>
-            <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/Feed" element={<Feed />} />
+                <Route path="/Today" element={<Today />} />
             </Routes>
         </Router>
     );
