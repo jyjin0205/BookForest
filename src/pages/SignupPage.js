@@ -50,7 +50,7 @@ const SignupPage = () => {
                     Lost Key Question - What is your favorite food?
                     <input id='userlostkey' type='text'/>
                     Email : <input id='email' type='email'/>
-                    <button type="submit">Login</button>
+                    <button type="submit">Sign Up</button>
                 </form>     
             </body>
         </>

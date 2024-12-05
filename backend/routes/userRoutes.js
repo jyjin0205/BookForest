@@ -16,10 +16,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/idcheck',(req,res)=>{
+router.get('/idcheck',async (req,res)=>{
     try{
         const {userid} = req.query;
-        const checkUser = User.findOne({_id: (userid)});    
+        const checkUser = await User.findOne({_id: (userid)});   
+         
         
         if(checkUser)
             return res.status(200).json({exists: true});
