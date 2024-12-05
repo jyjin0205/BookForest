@@ -1,0 +1,30 @@
+#horizon-bar {
+    display: flex;  /* Flexbox로 가로 정렬 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center;  /* 수직 중앙 정렬 */
+    background-color: white; /* 배경색 */
+    padding: 10px 20px;
+}
+
+button {
+    margin: 0 10px; 
+    padding: 10px 20px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#myPageButton {
+    margin-right: 100px;
+}
+
+#webtitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: auto;  /* 버튼들이 오른쪽에 배치되도록 하여 제목을 왼쪽으로 밀어줌 */
+    top: 30px;
+    margin-left: 100px;
+}

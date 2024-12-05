@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const User = require('../models/User'); 
+
 
 router.get('/', async (req, res) => {
     try {
-
-        //const newUser = new User({_id:1,hashedPassword:"testPW",hashedLostKey:"testKEY",nickname:"testNick",email:"testmail" });
-        // MongoDB에 저장 (컬렉션 자동 생성)
-        //const savedUser = await newUser.save();
-        //console.log('User saved:', savedUser);
+        console.log("Fetching users...");
+        const posts = await User.find(); // 모든 데이터 가져오기
+        console.log(posts);
+        res.status(200).json(posts); // 데이터를 JSON 형식으로 반환
+        // res.json({ message: "Hello from the Backend!"});
     } catch (error) {
-        console.error('Error saving user:', error);
-    }
-});
+        console.error("Error fetching posts:", error);
+        res.status(500).json({ error: "Failed to fetch posts" 
+    });
+
 
 router.get('/idcheck',async (req,res)=>{
     try{
@@ -93,5 +93,6 @@ router.post('/login', async(req,res)=>{
         res.status(500).send('Error logging in');
     }
 });
+
 
 module.exports = router;
