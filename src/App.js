@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import MyLibrary from './pages/MylibraryPage';
 import Searching from './pages/Searching';
+import DetailedBook from './pages/DetailedBook';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/signup" element= {<SignupPage />}/>
                 <Route path="/MyPage" element={<MyLibrary/>}/>
                 <Route path="/Searching" element={<Searching/>} />
+                <Route path="/Detail/:id" element={<DetailedBook />}/>
             </Routes>
         </Router>
     );

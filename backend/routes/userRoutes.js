@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User'); 
+const Book = require('../models/Book'); 
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -84,6 +85,57 @@ router.get('/myinfo',(req,res)=>{
         res.status(200).json({user: decoded});
     } catch(error) {
         return res.status(401).json({message: 'Invalid token'});
+    }
+});
+
+router.post('/alreadyassign',async(req,res)=>{
+    try{
+        const {userId, bookId} = req.body;
+
+        console.log(userId, bookId);
+
+        const currentUser = await User.findOne({_id: (userId)});
+        const currentBook = await Book.findOne({_id:bookId});
+
+        if(!currentUser)
+            return res.status(404).json({message: "User not found"});
+
+        if(!currentBook)
+            return res.status(404).json({message: "Book not found"});
+
+        if(bookId in currentUser.books)
+            return res.status(200).json({assigned:true});   
+        else
+            return res.status(200).json({assigned:false});   
+
+    }catch(error){
+        console.log(error);
+        return res.status(401).json({message: "Error Checking"});
+    }
+});
+
+router.post('/assign',async(req,res)=>{
+    try{
+        const {userId, bookId} = req.body;
+        const currentUser = await User.findOne({_id: (userId)});
+        const currentBook = await Book.findOne({_id:bookId});
+
+        if(!currentUser)
+            return res.status(404).json({message: "User not found"});
+
+        if(!currentBook)
+            return res.status(404).json({message: "Book not found"});
+
+        currentUser.books.push(bookId);
+
+        await currentUser.save();
+
+        return res.status(200).json({message: "Book assigned successfully"});        
+
+
+    }catch(error){
+        console.log(error);
+        return res.status(401).json({message: "Error Assigining"});
     }
 });
 

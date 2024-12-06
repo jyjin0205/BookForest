@@ -50,17 +50,15 @@ const MylibraryPage = () => {
                 </div>
                 <div className='book-storage'>
                     <div className="book-grid">
-                        <div className="book-img">
-                            {books.map((book)=>(
-                                <LibCard
-                                    key={book._id}
-                                    imageUrl = {book.coverImg}
-                                    title = {book.title}
-                                    author = {book.author}
-                                    alt = {book.title}
-                                />
-                            ))}
-                        </div>
+                        {books.map((book)=>(
+                            <LibCard
+                                key={book._id}
+                                imageUrl = {book.coverImg}
+                                title = {book.title}
+                                author = {book.author}
+                                alt = {book.title}
+                            />
+                        ))}
                     </div>
                 </div>
 

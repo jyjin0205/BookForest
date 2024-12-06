@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     hashedLostKey: {type: String},
     nickname: {type: String, required:true},
     email: {type: String,required:true},
-    books: [{type: Types.ObjectId}]
+    books: [{type: String}]
 }, { timestamps: true });
 
 

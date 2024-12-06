@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import HorizonBar from '../components/HorizonBar';
 import LibCard from "../components/LibCard";
 import '../styles/Searching.css'
@@ -8,6 +9,10 @@ import '../styles/Searching.css'
 const Searching = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [searched, setSearched] = useState(false);
+
+    const navigate = useNavigate();
+
 
     const handleSearch = async() =>{
         if(searchQuery.trim()){
@@ -23,9 +28,12 @@ const Searching = () => {
                 }
             }catch(error){
                 console.error("Search error");
+            } finally {
+                setSearched(true);
             }
         }
     }
+
 
     return(
         <>
@@ -47,18 +55,19 @@ const Searching = () => {
                     </div>
                     
                     <div className="search-results">
-                        {searchResults.length > 0 ? (
+                        {searchResults.length === 0 && searched ? (
+                            <div>No result</div>
+                        ) : (
                             searchResults.map((book) => (
                                 <LibCard
-                                    key={book.id}
+                                    key={book._id}
                                     imageUrl={book.coverImg}
                                     title={book.title}
                                     author={book.author}
                                     alt={book.title}
+                                    onClick={() => navigate(`/Detail/${book._id}`)}
                                 />
                             ))
-                        ) : (
-                            <p></p>
                         )}
                     </div>
                 </div>
