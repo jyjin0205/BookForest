@@ -22,3 +22,13 @@
 .todayBack{
     margin-bottom: 300px;
 }
+
+#recommendation{
+    font-size : 50px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+#recommendation_div{
+    display : flex;
+    justify-content: center;
+}

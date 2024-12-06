@@ -16,18 +16,26 @@ h1 {
 /* ItemCard */
 #cardBox {
     display: flex;
-    flex-wrap: wrap; /* 여러 줄로 정렬 가능 */
-    gap: 16px; /* 카드 사이 간격 */
-    justify-content: flex-start; /* 좌측 정렬 */
-    width: 100%; /* 부모의 전체 너비 사용 */
-    padding: 20px; /* 여백 추가 */
-    box-sizing: border-box; /* padding 포함 */
+    flex-wrap: wrap; 
+    gap: 16px;  
+    justify-content: flex-start; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+#cardBox-today {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 16px; 
+    justify-content: center; 
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .item-card {
-    flex: 0 0 calc(16.66% - 16px); /* 한 줄에 6개 배치, 간격을 고려하여 너비 설정 */
-    max-width: calc(16.66% - 16px); /* 최대 너비 설정 */
-    box-sizing: border-box; /* 패딩과 마진을 포함하여 계산 */
+    flex: 0 0 calc(16.66% - 16px);
+    max-width: calc(16.66% - 16px); 
+    box-sizing: border-box; 
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -80,4 +88,5 @@ h1 {
     left: 110px;
     top : 50px;
     font-size: 50px;
+    margin-bottom : 50px;
 }

@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
 import Feed from './pages/Feed';
 import Today from './pages/Today';
+import BookContent from './pages/BookContent';
 
 function App() {
 
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Today />} />
                 <Route path="/Feed" element={<Feed />} />
-                <Route path="/Today" element={<Today />} />
+                <Route path="/BookContent/:id" element={<BookContent />} />
             </Routes>
         </Router>
     );

@@ -5,13 +5,32 @@ const Book = require('../models/Book');
 router.get('/', async (req, res) => {
     try {
         console.log("Fetching posts...");
-        const posts = await Book.find(); // 모든 데이터 가져오기
-        res.status(200).json(posts); // 데이터를 JSON 형식으로 반환
+        const posts = await Book.find();
+        res.status(200).json(posts); 
         console.log(posts);
     } catch (error) {
-        console.error("Error fetching posts:", error);
-        res.status(500).json({ error: "Failed to fetch posts" });
+        console.error("Error fetching books:", error);
+        res.status(500).json({ error: "Failed to fetch books" });
     }
 });
+
+
+
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        console.log("Fetching book contents... id:" + id);
+        const books = await Book.findOne({ _id: id }); 
+        if (!books) {
+            return res.status(404).json({ error: "Book not found" }); 
+        }
+        res.status(200).json(books); 
+    } catch (error) {
+        console.error("Error fetching book contents:", error);
+        res.status(500).json({ error: "Failed to fetch book contents" });
+    }
+});
+
+
 
 module.exports = router;
