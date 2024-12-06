@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Card from "../components/Card";
+import RecommendationCard from "../components/RecommendationCard";
 
 function Today(){
 
@@ -16,46 +17,77 @@ function Today(){
     useEffect(() => {
       axios.get("http://localhost:3001/api/books")
         .then((response) => {
-          setItems(response.data);  // 정상적으로 데이터를 설정합니다.
-          setLoading(false); // 로딩 상태 업데이트
+          setItems(response.data);  
+          setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching posts:", error);
-          setError("Error fetching posts"); // 에러 상태 업데이트
-          setLoading(false); // 로딩 상태 업데이트
+          setError("Error fetching posts"); 
+          setLoading(false);
         });
     }, []);
     
-
+    // Randomize and get 10 items
+    const randomBooks = items.sort(() => 0.5 - Math.random()).slice(0, 10);
+    
+    // Randomize a single feed item
+    const randomFeed = items[Math.floor(Math.random() * items.length)];
 
     if (loading) {
-       return <p id="center">Loading Feeds</p>; // 데이터 로딩 중 메시지
+       return <p id="center">Loading Feeds</p>; 
     }
  
     if (error) {
-       return <p id="center">{error}</p>; // 에러 발생 시 메시지
+       return <p id="center">{error}</p>; 
     }
 
     return (
-        <div className = "todayBack">
+        <div className="todayBack">
             <HorizonBar />
+            
             <div className="todaysbook_div">
                 <img className="todaysbook_image" src="https://raw.githubusercontent.com/WIWLEE/ImageStorage/master/img/image-20241205044505996.png" />
             </div>
-            <img class="banner" src="https://bookbrush.com/wp-content/uploads/Dean-Koontz-Banner.png"></img>
-            <div id="cardBox">
-                {items.map((item) => (
+            
+            <img className="banner" src="https://bookbrush.com/wp-content/uploads/Dean-Koontz-Banner.png" alt="Banner" />
+            <div id="recommendation_div">
+                <h2 id="recommendation">Today's Recommendation</h2>
+            </div>
+
+            <div id="cardBox-today">
+                {randomBooks.map((item) => (
                    <Card 
-                      imageUrl = {item.coverImg} // coverImg 필드로 설정
-                      title = {item.title} // title 필드로 설정
-                      author = {item.author} // content 필드로 설정
-                      content = {""} // content 필드로 설정
-                      onClick = {()=>{
-                        //  navigate(`./ItemDetail/${item._id}`);  // 아이템 ID로 이동
+                      imageUrl={item.coverImg} 
+                      title={item.title} 
+                      author={item.author} 
+                      content={""} 
+                      onClick={() => {
+                         navigate(`./BookContent/${item._id}`); 
                       }}
                    />
                 ))}
-             </div>
+            </div>
+
+
+            <div id="recommendation_div">
+                <h2 id="recommendation">Today's Feed</h2>
+            </div>
+
+            
+            <div id="cardBox-today">
+                {randomFeed && (
+                    <RecommendationCard 
+                        imageUrl={"https://www.epubbooks.com/images/covers/wi/winter-s-tale-2b46a8.jpg"} 
+                        title={"The Winter's Tale"} 
+                        author={"William Shakespeare"} 
+                        content={"A masterpiece by Shakespeare that seamlessly blends tragedy and comedy. The play explores deep emotions such as jealousy, love, and redemption. The first half is intense and full of drama, while the second half offers a sense of hope and joy. The miraculous resurrection at the end adds a sense of wonder, making it a timeless play for readers who enjoy classic literature with rich themes and emotional depth."} 
+                        onClick={() => {
+                           navigate(`./BookContent/5`);
+                        }}
+                    />
+                )}
+            </div>
+
         </div>
     );
 }

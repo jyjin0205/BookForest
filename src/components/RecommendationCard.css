@@ -1,0 +1,47 @@
+.item-card-2 {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 80%;
+    height: auto;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.item-card-2:hover {
+    transform: translateY(-10px);
+}
+
+.item-card__image-2 {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-card__content-2 {
+    padding: 5px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    font-size: 20px;
+    width: 80%;
+    color: #777;
+    align-items: center;
+}
+
+.item-card__name-2 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.item-card__author-2 {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 5px;
+}
+

@@ -9,7 +9,7 @@ function HorizonBar() {
             <div id="horizon-bar">
                 <h2 id="webtitle">BOOK FOREST</h2>
                 <button id="TodayButton" onClick={() => {
-                    navigate("/Today");
+                    navigate("/");
                 }}>Home</button>
                 <button id="FeedButton" onClick={() => {
                     navigate("/Feed");

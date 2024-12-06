@@ -1,0 +1,26 @@
+#center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    transform: translate(-50%, -50%); 
+}
+
+#back-button {
+    position : absolute;
+    z-index: 2;
+    background-color: rgb(247, 224, 145);
+    color: white;
+    padding: 10px 20px;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#back-button:hover {
+    background-color: rgb(245, 198, 42);
+}
