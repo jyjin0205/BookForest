@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User'); 
-
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
     try {
@@ -12,8 +13,10 @@ router.get('/', async (req, res) => {
         // res.json({ message: "Hello from the Backend!"});
     } catch (error) {
         console.error("Error fetching posts:", error);
-        res.status(500).json({ error: "Failed to fetch posts" 
-    });
+        res.status(500).json({ error: "Failed to fetch posts" });
+    }
+});
+
 
 
 router.get('/idcheck',async (req,res)=>{
@@ -85,6 +88,7 @@ router.post('/login', async(req,res)=>{
 
         res.cookie('autoToken',token,{
             maxAge: 60*60*1000,
+            secure: false,
         });
 
         res.status(200).json({message:'Login successful'})

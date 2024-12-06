@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/LoginPage.css'
 
 const LoginPage = () => {
     
@@ -31,22 +32,38 @@ const LoginPage = () => {
 
     return(
         <>
-            Sign In
-            <form onSubmit={handleSubmit}>
-                ID : <input 
+        <div className="document">
+            <div className="signin">
+                    <span className="signintext1">Log In</span>
+                    <span className="signintext2">You can Log In</span>
+            </div>
+            <div className="login-continer">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="login-group">
+                        <label>ID: </label> 
+                        <input 
                         id='userid' 
                         type='text'
                         value={signupData.userid}
                         onChange={(e)=>setsignupData({ ...signupData, userid: e.target.value })}
+                        /> 
+                    </div>
+
+                    <div className="login-group">
+                        <label>Password: </label>
+                        <input 
+                        id='userpw' 
+                        type='password'
+                        value={signupData.userpw}
+                        onChange={(e)=>setsignupData({ ...signupData, userpw: e.target.value })}
                         />
-                Password : <input 
-                                id='userpw' 
-                                type='password'
-                                value={signupData.userpw}
-                                onChange={(e)=>setsignupData({ ...signupData, userpw: e.target.value })}
-                                />
-                <button type ="submit">Login</button>
-            </form>     
+                    </div>
+
+                    <button className="form-button" type ="submit">Login</button>
+                </form>
+            </div>
+        </div>
+                 
         </>
     )
 
