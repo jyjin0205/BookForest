@@ -5,18 +5,23 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 const postRoutes = require('./routes/postRoutes');
+const mylibraryRoutes = require('./routes/mylibraryRoutes');
 
 dotenv.config();
 connectDB();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true, // allow cookie
+}));
 
 // API Routes
 app.use('/api/users', userRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/mylibrary',mylibraryRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
