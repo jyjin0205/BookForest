@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/SignupPage.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const SignupPage = () => {
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage2, setErrorMessage2] = useState('');
     
     const [errorMessage, setErrorMessage] = useState(''); 
 
@@ -18,10 +21,11 @@ const SignupPage = () => {
         email: "",
     });
 
+    const navigate = useNavigate();
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{
-            const response = await fetch("http://localhost:5000/api/users/login", {
+            const response = await fetch("http://localhost:3001/api/users/register", {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(signupData),
@@ -29,9 +33,17 @@ const SignupPage = () => {
             });
 
             if(response.ok)
-                {
-                    const data = await response.json();
-                }
+            {
+                setSuccessMessage("Registering Succeed. ");
+
+                setTimeout(()=>{
+                    navigate('/');
+                },2000);
+            }
+            else
+            {
+                setErrorMessage("Registering Failed.");
+            }
     
         }catch(error){
 
@@ -48,7 +60,7 @@ const SignupPage = () => {
         const inputId = e.target.value;
         try 
         {
-            const response = await fetch(`http://localhost:5000/api/users/idcheck?userid=${inputId}`, {
+            const response = await fetch(`http://localhost:3001/api/users/idcheck?userid=${inputId}`, {
                 method: 'GET',
             });
     
@@ -79,7 +91,7 @@ const SignupPage = () => {
                 <div className="signup-container">
                     <form className="signup-form" onSubmit={handleSubmit}>
                         <div className="signup-group">
-                            NickName <input id='username' type='text'/>
+                            NickName <input id='username' type='text' value = {signupData.nickname} onChange= {(e)=>setsignupData({ ...signupData, nickname: e.target.value })}/>
                         </div>
                         <div className="signup-group">
                             ID <input id='userid' type='text' value = {signupData.userid} onChange= {(e)=>setsignupData({ ...signupData, userid: e.target.value })} onBlur={handleCheckId}/>
@@ -105,6 +117,29 @@ const SignupPage = () => {
                         </div>
                         <button className="form-button" type="submit">Sign Up</button>
                     </form>
+
+                    {successMessage && (
+                    <div style={{ 
+                        backgroundColor: '#28a745', 
+                        color: 'white', 
+                        padding: '10px', 
+                        borderRadius: '5px', 
+                        marginTop: '10px' 
+                    }}>
+                        {successMessage}
+                    </div>
+                )}
+                {errorMessage2 && (
+                    <div style={{ 
+                        backgroundColor: '#dc3545', 
+                        color: 'white', 
+                        padding: '10px', 
+                        borderRadius: '5px', 
+                        marginTop: '10px' 
+                    }}>
+                        {errorMessage2}
+                    </div>
+                )}
                 </div>
             </div>
             

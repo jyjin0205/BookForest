@@ -6,7 +6,7 @@ const Book = require('../models/Book');
 
 
 const authenticateToken = (req,res,next) => {
-    const token = req.cookies.authToken; 
+    const token = req.cookies.autoToken; 
 
     if (!token) {
         return res.status(401).json({ message: "No Token"});
@@ -25,7 +25,7 @@ router.get("/", authenticateToken, async (req,res) => {
     try{
         const userId = req.user.userId;
     
-        const currentUser = User.findOne({_id: (userId)});
+        const currentUser = await User.findOne({_id: (userId)});
         const bookIds = currentUser.books;
         const books = await Book.find({_id: {$in:bookIds}});
 

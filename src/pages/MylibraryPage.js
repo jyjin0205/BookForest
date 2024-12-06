@@ -1,15 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import LibCard from "../components/LibCard";
+import HorizonBar from '../components/HorizonBar';
+import { useNavigate } from 'react-router-dom';
+
+import '../styles/MylibraryPage.css'
 
 const MylibraryPage = () => {
 
     const [books, setBooks] = useState([]);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         
         const fetchBooks = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/mylibrary", {
+                const response = await fetch("http://localhost:3001/api/mylibrary", {
                     method: 'GET',
                     headers: {'Content-Type':'application/json'},
                     credentials: 'include', // cookie inculde
@@ -18,7 +24,8 @@ const MylibraryPage = () => {
                 if(response.ok)
                 {
                     const data = await response.json();
-                    setBooks(data);
+                    if(data.books)
+                        setBooks(data.books);
                 }
     
             } catch(error) {
@@ -29,21 +36,34 @@ const MylibraryPage = () => {
         fetchBooks();
     }, []);
 
+    const handleNavigate = () =>{
+        navigate("/Searching");
+    };
+
     return(
         <>
+            <HorizonBar />
             <div className="document">
-                <div class="book-grid">
-                    <div class="book-img">
-                        {books.map((book)=>(
-                            <LibCard
-                                imageUrl = {book.coverImg}
-                                title = {book.title}
-                                author = {book.author}
-                                alt = {book.title}
-                            />
-                        ))}
+                <div className="my-library-header">
+                    <h1>My Library</h1>
+                    <button className="add-book-button" onClick={handleNavigate}>Search</button>
+                </div>
+                <div className='book-storage'>
+                    <div className="book-grid">
+                        <div className="book-img">
+                            {books.map((book)=>(
+                                <LibCard
+                                    key={book._id}
+                                    imageUrl = {book.coverImg}
+                                    title = {book.title}
+                                    author = {book.author}
+                                    alt = {book.title}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
+
             </div>
         </>
     );

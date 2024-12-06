@@ -6,6 +6,8 @@ import BookContent from './pages/BookContent';
 
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import MyLibrary from './pages/MylibraryPage';
+import Searching from './pages/Searching';
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
                 <Route path="/Today" element={<Today />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element= {<SignupPage />}/>
+                <Route path="/MyPage" element={<MyLibrary/>}/>
+                <Route path="/Searching" element={<Searching/>} />
             </Routes>
         </Router>
     );

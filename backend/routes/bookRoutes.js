@@ -14,6 +14,24 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/search', async(req,res)=>{
+    const {userinput} = req.query;
+    try{
+        const results = await Book.find({
+            $or: [
+                {title: {$regex: userinput, $options: "i"}},
+                {author: {$regex: userinput, $options:"i"}}
+            ]
+        });
+        console.log(results);
+
+        res.status(200).json({books:results});
+
+    } catch(error){
+        res.status(500).json({error:"Failed to search books"});
+    }
+
+});
 
 
 router.get('/:id', async (req, res) => {

@@ -1,0 +1,81 @@
+
+
+.my-library-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 60px;
+    margin-right:60px;
+    margin-bottom: 40px;
+}
+
+.my-library-header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #808080;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.add-book-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #808080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-book-button:hover {
+    background-color: #6e6e6e;
+}
+
+.book-storage {
+    background-color: #f0f0f0; 
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.book-img {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 카드 스타일링 (LibCard에 맞게 조정) */
+.LibCard {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.LibCard:hover {
+    transform: scale(1.05);
+}
+
+.LibCard img {
+    width: 100%;
+    border-bottom: 2px solid #ddd;
+}
+
+.LibCard .title {
+    font-size: 1.2rem;
+    margin: 10px;
+}
+
+.LibCard .author {
+    color: #888;
+    font-size: 1rem;
+    margin: 5px;
+}

@@ -17,6 +17,42 @@ router.get('/', async (req, res) => {
     }
 });
 
+const authenticateToken = (req,res,next) => {
+    const token = req.cookies.autoToken; 
+
+    if (!token) {
+        req.user = null;
+        next();
+    }
+    try{
+        const decoded = jwt.verify(token, '10');
+        req.user = decoded;
+        next();
+    } catch(err)
+    {
+        req.user = null;
+        next();
+    }
+}
+
+router.get('/userInfo',authenticateToken, async(req,res)=>{
+    try{
+        if(!req.user)
+        {
+            return res.status(200).json({exists:false});
+        }
+        const userId = req.user.userId;
+        const checkUser = await User.findOne({_id: (userId)});   
+         
+        if(checkUser)
+            return res.status(200).json({exists: true, userId:userId, nickname:checkUser.nickname});
+        else
+            return res.status(200).json({exists: false});
+
+    } catch(error){
+        return res.status(401).json({message:'Error when checking Id existance'});
+    }
+});
 
 
 router.get('/idcheck',async (req,res)=>{
@@ -35,6 +71,7 @@ router.get('/idcheck',async (req,res)=>{
     }
 });
 
+
 router.get('/myinfo',(req,res)=>{
     const token = req.cookies.autoToken;
 
@@ -43,14 +80,14 @@ router.get('/myinfo',(req,res)=>{
     }
 
     try{
-        const decoded = jwt.verify(token, 10);
+        const decoded = jwt.verify(token, '10');
         res.status(200).json({user: decoded});
     } catch(error) {
         return res.status(401).json({message: 'Invalid token'});
     }
 });
 
-//register API
+
 router.post('/register', async(req,res)=>{
     try{
         const {userid, userpw, userlostkey, nickname, email} = req.body;
@@ -73,7 +110,9 @@ router.post('/login', async(req,res)=>{
     try{
         const {userid, userpw} = req.body;
 
-        const currentUser = User.findOne({_id: (userid)});
+        const currentUser = await User.findOne({_id: (userid)});
+        console.log("log");
+        console.log(currentUser);
         if(!currentUser)
             return res.status(401).json({message: "Invalid username"});
         const isPasswordValid = await bcrypt.compare(userpw,currentUser.hashedPassword);

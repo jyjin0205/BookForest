@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import HorizonBar from "../components/HorizonBar"
+
 import '../styles/LoginPage.css'
 
 const LoginPage = () => {
-    
+    const navigate = useNavigate();
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const [signupData, setsignupData] = useState({
         userid: "",
         userpw: "",
@@ -11,9 +16,8 @@ const LoginPage = () => {
     const handleSubmit = async(e) =>{
         e.preventDefault();
         
-        // attempt log in
         try {
-            const response = await fetch("http://localhost:5000/api/users/login", {
+            const response = await fetch("http://localhost:3001/api/users/login", {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(signupData),
@@ -23,6 +27,13 @@ const LoginPage = () => {
             if(response.ok)
             {
                 const data = await response.json();
+                setSuccessMessage("Login Succeed. ");
+
+                    navigate('/');
+            }
+            else
+            {
+                setErrorMessage("Login Failed.");
             }
 
         } catch(error) {
@@ -32,6 +43,7 @@ const LoginPage = () => {
 
     return(
         <>
+        <HorizonBar />
         <div className="document">
             <div className="signin">
                     <span className="signintext1">Log In</span>
@@ -61,6 +73,12 @@ const LoginPage = () => {
 
                     <button className="form-button" type ="submit">Login</button>
                 </form>
+                <div>
+                    <button className="form-button" onClick={() => {
+                    navigate("/signup");
+                    }}>SignUp</button>
+                </div>
+                
             </div>
         </div>
                  
