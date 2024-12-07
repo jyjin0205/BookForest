@@ -51,7 +51,7 @@ const HorizonBar = () => {
                 <h2 id="webtitle">BOOK FOREST</h2>
                 <button id="TodayButton" onClick={() => {
                     navigate("/");
-                }}>Home</button>
+                }}>Today</button>
                 <button id="FeedButton" onClick={() => {
                     navigate("/Feed");
                 }}>Feed</button>

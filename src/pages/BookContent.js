@@ -52,7 +52,7 @@ function BookContent() {
 
     return (
         <div>
-             <button id="back-button"  onClick={() => navigate("/")}>Go Back</button>
+             <button id="back-button"  onClick={() => navigate("/MyPage")}>Go Back</button>
             <div style={{ height: "100vh" }}>
                 <ReactReader
                     url={bookFile}
