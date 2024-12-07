@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import HorizonBar from "../components/HorizonBar"
 
 import '../styles/LoginPage.css'
+import libraryImage from "../file/library.jpg"
+
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -49,7 +51,7 @@ const LoginPage = () => {
                     <span className="signintext1">Log In</span>
                     <span className="signintext2">You can Log In</span>
             </div>
-            <div className="login-continer">
+            <div className="login-container">
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div className="login-group">
                         <label>ID: </label> 
@@ -71,10 +73,11 @@ const LoginPage = () => {
                         />
                     </div>
 
-                    <button className="form-button" type ="submit">Login</button>
+                    <button className="login-button" type ="submit">Login</button>
                 </form>
-                <div>
-                    <button className="form-button" onClick={() => {
+                <div className="login-form">
+                    <img src={libraryImage} className="image"></img>
+                    <button className="signup-button" onClick={() => {
                     navigate("/signup");
                     }}>SignUp</button>
                 </div>

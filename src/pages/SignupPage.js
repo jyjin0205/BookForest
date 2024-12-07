@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/SignupPage.css'
 import { useNavigate } from 'react-router-dom';
+import HorizonBar from "../components/HorizonBar"
+
 
 
 const SignupPage = () => {
@@ -85,8 +87,9 @@ const SignupPage = () => {
 
     return(
         <>
-            <div>
-                <div className="signintext1"> Sign Up
+            <HorizonBar />
+            <div className="document">
+                <div className="signuptext1"> Sign Up
                 </div>
                 <div className="signup-container">
                     <form className="signup-form" onSubmit={handleSubmit}>

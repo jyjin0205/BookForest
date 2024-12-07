@@ -44,11 +44,13 @@ const MylibraryPage = () => {
         <>
             <HorizonBar />
             <div className="document">
-                <div className="my-library-header">
-                    <h1>My Library</h1>
-                    <button className="add-book-button" onClick={handleNavigate}>Search</button>
+                <div className="my-library-bar">
+                    <div className="my-library-header">
+                        <h1>My Library</h1>
+                    </div>
+                    <button className="add-book-button" onClick={handleNavigate}>Search</button>    
                 </div>
-                <div className='book-storage'>
+               <div className='book-storage'>
                     <div className="book-grid">
                         {books.map((book)=>(
                             <LibCard

@@ -56,7 +56,7 @@ const Searching = () => {
                     
                     <div className="search-results">
                         {searchResults.length === 0 && searched ? (
-                            <div>No result</div>
+                            <div className="search-no-result">No result</div>
                         ) : (
                             searchResults.map((book) => (
                                 <LibCard
