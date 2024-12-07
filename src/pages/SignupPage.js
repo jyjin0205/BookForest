@@ -44,7 +44,7 @@ const SignupPage = () => {
             }
             else
             {
-                setErrorMessage("Registering Failed.");
+                setErrorMessage2("Registering Failed.");
             }
     
         }catch(error){
@@ -53,9 +53,14 @@ const SignupPage = () => {
     }
 
     const handleComparePw = async(e) => {
+        console.log(passwordConfirm);
+        console.log(signupData.userpw);
         e.preventDefault();
-        if(signupData.userpw && passwordConfirm && signupData.userpw!==passwordConfirm)
+        if(signupData.userpw && passwordConfirm && signupData.userpw !== passwordConfirm)
             setErrorPwMessage("Please Confirm Password");
+        else
+            setErrorPwMessage("");
+
     }
 
     const handleCheckId = async(e) =>{
@@ -106,10 +111,10 @@ const SignupPage = () => {
                             Password <input id='userpw' type='password'  value = {signupData.userpw} onChange = {(e)=>setsignupData({ ...signupData, userpw: e.target.value })} onBlur={handleComparePw}/>
                         </div>
                         <div className="signup-group">
-                            PasswordComfirm <input id='userpwComfirm' type='password' onChange = {(e)=>setPasswordConfirm(e.target.value)} onBlur={handleComparePw} />
+                            PasswordComfirm <input id='userpwComfirm' type='password' value={passwordConfirm} onChange = {(e)=>setPasswordConfirm(e.target.value)} onBlur={handleComparePw} />
                         </div>
                         <div className="signup-errormessage">
-                        {errorPwMessage && <p style={{color:'red'}}>{errorMessage}</p>}
+                        {errorPwMessage && <p style={{color:'red'}}>{errorPwMessage}</p>}
                         </div>
                         <div className="signup-group">
                             Lost Key Question - What is your favorite food?
@@ -118,7 +123,9 @@ const SignupPage = () => {
                         <div className="signup-group">
                             Email <input id='email' type='email'  value = {signupData.email} onChange = {(e)=>setsignupData({ ...signupData, email: e.target.value })}/>
                         </div>
-                        <button className="form-button" type="submit">Sign Up</button>
+                        {!errorPwMessage && !errorMessage ? (                        
+                            <button className="form-button" type="submit">Sign Up</button>
+                        ) : (<></>)}
                     </form>
 
                     {successMessage && (
