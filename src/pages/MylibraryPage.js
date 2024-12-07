@@ -57,6 +57,7 @@ const MylibraryPage = () => {
                                 title = {book.title}
                                 author = {book.author}
                                 alt = {book.title}
+                                onClick = {() => {navigate(`../BookContent/${book._id}`);}}
                             />
                         ))}
                     </div>

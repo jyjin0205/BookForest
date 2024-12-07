@@ -62,7 +62,8 @@ function Today(){
                       author={item.author} 
                       content={""} 
                       onClick={() => {
-                         navigate(`./BookContent/${item._id}`); 
+                        navigate(`./Detail/${item._id}`);
+                        //  navigate(`./BookContent/${item._id}`); 
                       }}
                    />
                 ))}
