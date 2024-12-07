@@ -8,7 +8,8 @@
 .signin {
     width: 644px;
     height: 137px;
-    margin: 24px;
+    margin-top: 2%;
+    margin-left: 10%;
     opacity: 1;
     top: 164px;
     left: 71px;
@@ -27,6 +28,7 @@
     font-size: 64px;
     opacity: 1;
     text-align: left;
+    margin-left: 0;
 }
 
 .signintext2 {
@@ -42,21 +44,26 @@
 }
 
 .login-container{
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-right:10%;
+    max-height: 45vh;
 }
+
 .login-form{
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 40%;
+    width: 45%;
+    max-height: 100%;
+    align-items: center;
 }
+
+
 .login-group{
     display:flex;
     flex-direction: row;
@@ -70,21 +77,43 @@
     flex:0 0 auto;
     width: 80px;  
 }
+
 .login-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    width: 80%;
+    width: 50%;
 }
-.form-button{
+
+.login-button{
+    margin-top: 5%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #808080;
     color: white;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 80%;
+    width: 60%;
+}
+
+
+.image{
+    height:50vh;
+    position:relative;
+    top:-70%;
+}
+
+.signup-button{
+    position:relative;
+    top:-70%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 60%;
+    background-color: #808080;
+    color: white;
 }

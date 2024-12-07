@@ -6,11 +6,11 @@
     align-items: center;
     margin-left: 60px;
     margin-right:60px;
-    margin-bottom: 40px;
+    margin-bottom: 2vh;
 }
 
 .my-library-header h1 {
-    font-size: 2rem;
+    font-size: 64px;
     font-weight: bold;
     color: #808080;
     flex-grow: 1;
@@ -18,7 +18,9 @@
 }
 
 .add-book-button {
-    padding: 10px 20px;
+    position: relative;
+    top: -12vh;
+    left: 68vw;
     font-size: 1rem;
     background-color: #808080;
     color: white;
@@ -33,6 +35,8 @@
 }
 
 .book-storage {
+    position: relative;
+    top: -7vh;
     margin-left: 10%;
     margin-right: 10%;
     background-color: #f0f0f0; 

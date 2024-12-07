@@ -36,6 +36,33 @@ const authenticateToken = (req,res,next) => {
     }
 }
 
+router.get('/detail/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        console.log("Fetching book contents... id:" + id);
+        const books = await Book.findOne({ _id: id }); 
+        if (!books) {
+            return res.status(404).json({ error: "Book not found" }); 
+        }
+        else {
+
+            const token = req.cookies.autoToken;
+            const decoded = jwt.verify(token, '10');
+
+            const userId = decoded.userId;
+            const checkUser = await User.findOne({_id: (userId)});   
+            if(checkUser)
+            {
+                return res.status(200).json({exists: true, userId:userId, book:books});
+            }
+
+        }
+    } catch (error) {
+        console.error("Error fetching book contents:", error);
+        res.status(500).json({ error: "Failed to fetch book contents" });
+    }
+});
+
 router.get('/userInfo',authenticateToken, async(req,res)=>{
     try{
         if(!req.user)
@@ -103,7 +130,7 @@ router.post('/alreadyassign',async(req,res)=>{
         if(!currentBook)
             return res.status(404).json({message: "Book not found"});
 
-        if(bookId in currentUser.books)
+        if(currentUser.books.includes(bookId))
             return res.status(200).json({assigned:true});   
         else
             return res.status(200).json({assigned:false});   
