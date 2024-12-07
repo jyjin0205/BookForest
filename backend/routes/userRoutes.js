@@ -47,14 +47,21 @@ router.get('/detail/:id', async (req, res) => {
         else {
 
             const token = req.cookies.autoToken;
-            const decoded = jwt.verify(token, '10');
+            if(!token)
+                return res.status(200).json({exists:false, userId:null,book:books});
 
-            const userId = decoded.userId;
-            const checkUser = await User.findOne({_id: (userId)});   
-            if(checkUser)
+            try{
+                const decoded = jwt.verify(token, '10');
+                const userId = decoded.userId;
+                const checkUser = await User.findOne({_id: (userId)});   
+                if(checkUser)
+                {
+                    return res.status(200).json({exists: true, userId:userId, book:books});
+                }
+            }catch(err)
             {
-                return res.status(200).json({exists: true, userId:userId, book:books});
-            }
+                return res.status(200).json({exists:false, userId:null,book:books});
+            }  
 
         }
     } catch (error) {
