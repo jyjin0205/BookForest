@@ -1,14 +1,29 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Header from './components/Header';
+import Feed from './pages/Feed';
+import Today from './pages/Today';
+import BookContent from './pages/BookContent';
+
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import MyLibrary from './pages/MylibraryPage';
+import Searching from './pages/Searching';
+import DetailedBook from './pages/DetailedBook';
 
 function App() {
+
     return (
         <Router>
-            <Header />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Today />} />
+                <Route path="/Feed" element={<Feed />} />
+                <Route path="/BookContent/:id" element={<BookContent />} />
+                <Route path="/Today" element={<Today />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element= {<SignupPage />}/>
+                <Route path="/MyPage" element={<MyLibrary/>}/>
+                <Route path="/Searching" element={<Searching/>} />
+                <Route path="/Detail/:id" element={<DetailedBook />}/>
             </Routes>
         </Router>
     );

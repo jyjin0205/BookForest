@@ -1,0 +1,34 @@
+.banner {
+    width: 100%;  
+    height: auto;
+}
+
+.todaysbook_div{
+    flex-direction: column; 
+    margin-top: 0px;
+    height: auto;
+    width: 100%;
+    display : flex;
+    justify-content: center;    
+    align-items: center;
+}
+
+
+.todaysbook_image{
+    position: relative;
+    width: 100%;
+}
+
+.todayBack{
+    margin-bottom: 300px;
+}
+
+#recommendation{
+    font-size : 50px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+#recommendation_div{
+    display : flex;
+    justify-content: center;
+}

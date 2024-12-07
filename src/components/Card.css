@@ -1,0 +1,30 @@
+#horizon-bar {
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    background-color: white; 
+    padding: 10px 20px;
+}
+
+button {
+    margin: 0 10px; 
+    padding: 10px 20px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#myPageButton {
+    margin-right: 100px;
+}
+
+#webtitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: auto;  
+    top: 30px;
+    margin-left: 100px;
+}
