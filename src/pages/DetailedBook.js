@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import HorizonBar from '../components/HorizonBar';
 import '../styles/DetailedBook.css'
 
@@ -15,6 +15,9 @@ const DetailedBook = () => {
 
     //Already Assigned
     const [isassign, setIsAssign] = useState(false);
+
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -82,6 +85,9 @@ const DetailedBook = () => {
 
             if(response.ok){
                 alert("Assigned");
+                setTimeout(()=>{
+                    navigate('/MyPage');
+                })
             }
         }catch(error)
         {
